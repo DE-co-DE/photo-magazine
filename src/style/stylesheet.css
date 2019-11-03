@@ -184,7 +184,22 @@ button:hover,.button:hover, button:focus, .button:focus {
     border: none;
     position: relative;
 }
- 
- 
+ ul{
+    position: absolute;
+    top: 30%;
+    right: 90px;
+    padding-bottom: 1px;
+ }
+  li.list:first-child{
+background:none;
+  }
+ li.list {
+    font-size: large;
+    list-style: none;
+    text-align: left;
+    background: #f2f2f2;
+    padding: 12px;
+    margin-bottom: 3px;
+}
 
  

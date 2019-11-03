@@ -1,7 +1,22 @@
 import React,{Component} from 'react';
 
 class AddPhoto extends Component {
-  
+    constructor(){
+        super();
+       this.state={
+           'data':[]
+       }
+    }
+componentDidMount(){
+    fetch('https://picsum.photos/v2/list?limit=10').then((resp) => resp.json()) 
+     .then((data) =>{
+   
+    console.log(data)
+    this.setState({'data':data})
+    })
+ }
+
+
 
     addPhoto=(event)=>{
         console.log(event);
@@ -19,6 +34,11 @@ class AddPhoto extends Component {
         
     }
         render(){
+            const {data}=this.state
+            const list=data.map((value,index)=>
+
+                <li className="list" key={index}>{value.download_url}</li>
+            )
          return (
         
              <div className="form">
@@ -27,6 +47,10 @@ class AddPhoto extends Component {
                  <textarea placeholder="Description" name="description" row="6"></textarea>
                  <button>Post</button>
              </form>
+             <ul>
+             <li className="list">Link of Images</li>
+             {list}
+             </ul>
          </div>
          )
         }
