@@ -13,22 +13,20 @@ class Single extends Component {
     }
   }
    addComment=(comment)=>{
-    console.log(comment);
       this.setState((state) => ({
-      comments: state.comments.concat(comment)
+           comments: state.comments.concat(comment)
     }))
       
       
 }
     render(){
-      console.log(this.props);
             const {location} = this.props;
             const post=location.state.post 
-           const {comments}=this.state;
+            const {comments}=this.state;
          return (               
              <div className="single-photo">
-              <Photo post={post} {...this.props} view="single"/>
-              <Comments  comments = {comments} addComment={this.addComment}/>
+                  <Photo post={post} {...this.props} view="single"/>
+                  <Comments  comments = {comments} addComment={this.addComment}/>
             </div>
          )
         }

@@ -8,22 +8,18 @@ class AddPhoto extends Component {
        }
     }
 componentDidMount(){
-    fetch('https://picsum.photos/v2/list?limit=10').then((resp) => resp.json()) 
+    fetch('https://picsum.photos/v2/list?limit=10')
+    .then((resp) => resp.json()) 
      .then((data) =>{
-   
-    console.log(data)
-    this.setState({'data':data})
+        this.setState({'data':data})
     })
  }
 
 
 
     addPhoto=(event)=>{
-        console.log(event);
         event.preventDefault();
-        console.log(event.target.elements.link.value);
-        console.log(event.target.elements.description.value);
-        const post = 
+         const post = 
             {
                 id:Number(new Date()),
                 description: event.target.elements.description.value,
@@ -42,16 +38,16 @@ componentDidMount(){
          return (
         
              <div className="form">
-             <form onSubmit={this.addPhoto}>
-                 <input type="text" placeholder="Link of an image" name="link"/>
-                 <textarea placeholder="Description" name="description" row="6"></textarea>
-                 <button>Post</button>
-             </form>
-             <ul>
-             <li className="list">Link of Images</li>
-             {list}
-             </ul>
-         </div>
+                     <form onSubmit={this.addPhoto}>
+                         <input type="text" placeholder="Link of an image" name="link"/>
+                         <textarea placeholder="Description" name="description" row="6"></textarea>
+                         <button>Post</button>
+                     </form>
+                     <ul>
+                         <li className="list">Link of Images</li>
+                         {list}
+                     </ul>
+             </div>
          )
         }
       }
