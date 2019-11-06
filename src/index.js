@@ -5,13 +5,11 @@ import ReactDOM from 'react-dom';
 import './style/stylesheet.css';
 import {BrowserRouter} from 'react-router-dom'
 import Main from './Components/Main'
-
-
+import {createStore} from 'redux'
+import {Provider} from 'react-redux'
+import {posts} from './redux/reducer'
+const store=createStore(posts,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
   
- ReactDOM.render(<BrowserRouter><Main/></BrowserRouter>,
+ ReactDOM.render(<Provider store={store}><BrowserRouter><Main/></BrowserRouter></Provider>,
      document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();

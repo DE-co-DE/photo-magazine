@@ -19,13 +19,19 @@ componentDidMount(){
 
     addPhoto=(event)=>{
         event.preventDefault();
+        const description=event.target.elements.description.value
+        const imageLink=event.target.elements.link.value
          const post = 
             {
                 id:Number(new Date()),
-                description: event.target.elements.description.value,
-                imageLink: event.target.elements.link.value
+                description,
+                imageLink
             }
-           this.props.onAddPhoto(post);
+            if(description && imageLink){
+                  this.props.addPhoto(post);
+                  this.props.onHistory.push('/')
+            }
+          
            
         
     }

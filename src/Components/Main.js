@@ -2,50 +2,26 @@ import React,{Component} from 'react';
 import Magazine from './Magazine';
 import AddPhoto from './AddPhoto';
 import Single from './Single';
-import posts from '../data/posts';
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
 import {Route , Link} from 'react-router-dom';
-
+import * as actions from '../redux/actions'
 class Main extends Component {
 
-  constructor(){
-    super()
-    this.state = {  
-        posts: [],
-    }
-  }
-  componentDidMount(){
-   this.setState({'posts':posts})
-                }
-  removePhoto=(postRemove)=>{
-      this.setState((state) => ({
-          posts: state.posts.filter(post=>post !== postRemove)
-          }));
-    }
-
-  addPhoto=(postAdd)=>{
-    this.setState((state) => ({
-        posts: state.posts.concat([postAdd])
-    }));
-    }
-
     render(){
-     return
+      console.log(this.props)
+     return(
       <div>
             <h1><Link to="/" >Photo-Magazine</Link></h1>
           <Route exact path="/" render={()=>(
               <div>
-                <Magazine posts={this.state.posts} onRemovePhoto = {this.removePhoto}/>
+                <Magazine {...this.props}/>
               </div>
           )} />
               
           <Route path="/add-photo" render={({history})=>(
                <div> 
-                    <AddPhoto onAddPhoto = {(post)=>{
-                      console.log(post);
-                      this.addPhoto(post);
-                      history.push('/');
-                    }
-                    }/>
+                    <AddPhoto {...this.props} onHistory={history}/>
                     
                     </div>
            )} />  
@@ -55,8 +31,16 @@ class Main extends Component {
               </div>
            )} />         
        </div>
+       )
     }
   }
+const mapStateToProps=((state)=>{
+  return {posts:state}
 
-export default Main;
+})
+const mapDispatchToProps=((dispatch)=>{
+  return bindActionCreators(actions,dispatch)
+
+})
+export default connect(mapStateToProps,mapDispatchToProps)(Main);
 

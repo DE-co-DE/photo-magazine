@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom'
 import image from '../data/demo.jpg'
 class Photo extends React.Component {
     render() {
-        const post = this.props.post;
+        const {post,index,removePost} = this.props;
         var path= {
                             pathname: `/single/${post.id}`,
                             state: {
                             post: post
                             }
                             }
+                           
         return (
 
             <figure className="figure">
@@ -19,7 +20,7 @@ class Photo extends React.Component {
                 {   this.props.view===undefined &&(
                         <div className="button-container">
                           <button onClick = {()=>{
-                          this.props.onRemovePhoto(post)
+                          removePost(index)
                           }}> Remove </button>
                           <Link className="button" to={path}>
                             <div className="comment-count">
