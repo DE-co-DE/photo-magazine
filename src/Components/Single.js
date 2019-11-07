@@ -4,6 +4,7 @@ import Comments from "./Comments";
 
 class Single extends Component {
     render() {
+      
         const { posts, comments, match } = this.props;
         const id = Number(match.params.id);
         const post = posts.find(post => post.id == id);
