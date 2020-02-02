@@ -51,6 +51,9 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
     return bindActionCreators(actions, dispatch);
+    // return {
+    //     removePost :(index) => dispatch(removePost(index))
+    // }
 };
 export default connect(
     mapStateToProps,
